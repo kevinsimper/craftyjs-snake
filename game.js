@@ -4,7 +4,7 @@ Crafty.background('black');
 
 Crafty.c('Snake', {
   init: function() {
-    this.requires('Color, 2D, Canvas');
+    this.requires('Color, 2D, WebGL');
     this.bind('EnterFrame')
     this.bind('EnterFrame', this.moveSnake);
     this.bind('KeyDown', function(e) {
@@ -62,7 +62,7 @@ window.game = {
                       .color('red')
                       .onHit('SnakePart', function(data){
                         var oldPoint = data[0].obj;
-                        var snakePart = Crafty.e('Canvas, 2D, Color')
+                        var snakePart = Crafty.e('WebGL, 2D, Color')
                                               .attr({x: oldPoint.x, y: oldPoint.y, w: 10, h: 10})
                                               .color('red');
                         game.snakeParts.push(snakePart);
@@ -73,7 +73,7 @@ window.game = {
     game.spawnPart();
   },
   spawnPart: function(){
-    var part = Crafty.e('SnakePart, Color, 2D, Canvas, Collision')
+    var part = Crafty.e('SnakePart, Color, 2D, WebGL, Collision')
                      .attr({x: Crafty.math.randomInt(1,29) * 10, y: Crafty.math.randomInt(1,29) * 10, w: 10, h: 10}).color('white');
 
   }
